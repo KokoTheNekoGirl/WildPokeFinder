@@ -1,57 +1,50 @@
 import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Tabs } from 'expo-router';
+import { Image } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { GlobalStyles } from '@/components/Styles';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+import { whitecolour, yellowcolour } from '@/constants/Colors';
+
+//import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+
+import EncounterIcon from '@/assets/images/pokeballicon.png';
+import PokedexIcon from '@/assets/images/pokedexicon.png';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
-  return (
-    <Tabs
+    return (
+    <Tabs 
+    
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        tabBarActiveTintColor: yellowcolour,
+        tabBarInactiveTintColor: whitecolour,
+        headerTitle: '',
+        tabBarStyle: GlobalStyles.navbackground,
+        headerStyle: GlobalStyles.headerstyle,
+        
+        // headerLeft: () => (
+        //   <Text style={GlobalStyles.headertext}>Next Random Pokemon</Text>
+        // ),
+        
+      }}
+
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: 'Encounter',
+          tabBarIcon: () => <Image style={GlobalStyles.iconstyles} source={EncounterIcon} />,
+          tabBarLabelStyle: GlobalStyles.tabtext,
+          
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="pokedex"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Pokedex',
+          tabBarIcon: () => <Image style={GlobalStyles.iconstyles} source={PokedexIcon} />,
+          tabBarLabelStyle: GlobalStyles.tabtext,
         }}
       />
     </Tabs>

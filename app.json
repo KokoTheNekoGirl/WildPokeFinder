@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "helloexpo",
-    "slug": "helloexpo",
-    "version": "1.0.0",
+    "name": "Wild PokeFinder",
+    "slug": "pokefinder",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -26,7 +26,7 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
